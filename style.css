@@ -7,31 +7,36 @@ body {
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    height: 80vh;
-    overflow: hidden;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 h1 {
-    margin: 20px 0 0;
+    margin: 20px 0 10px;
+}
+
+p {
+    margin: 0 0 20px 0;
+    text-align: center;
 }
 
 .conteneur {
-    padding: 20px 30px;
-    position: relative;
-    margin: auto;
-    width: 450px;
-    height: 350px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 350px;
 }
 
 #plateau {
     display: flex;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
 .lettre {
@@ -50,31 +55,28 @@ h1 {
 #erreurs {
     color: #c5a7a7;
     display: flex;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    justify-content: center;
+    text-align: center;
 }
 
 #notification {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px 10px 0 0;
   padding: 15px 20px;
-  position: absolute;
+  position: fixed;
   bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
   transition: transform 0.3s ease-in-out;
+  z-index: 1000;
 }
-
-
 
 #notification p {
   margin: 0;
 }
 
-
-
 #notification.afficher {
-  transform: translateY(-50px);
+  transform: translate(-50%, -50px);
 }
 
 .conteneur-popup {
@@ -113,4 +115,42 @@ h1 {
 
 .popup button:focus {
   outline: 0;
+}
+
+.clavier {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+  gap: 8px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 450px;
+  padding: 20px;
+}
+
+.btn-lettre {
+  background-color: #2980b9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-lettre:hover:not(:disabled) {
+  background-color: #3498db;
+  transform: scale(1.05);
+}
+
+.btn-lettre:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.btn-lettre:disabled {
+  background-color: #7f8c8d;
+  cursor: not-allowed;
+  opacity: 0.6;
 }

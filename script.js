@@ -149,6 +149,41 @@ const elPopup = document.getElementById('popup');
 const elDernierMessage = document.getElementById('dernier-message');
 const elMotCache = document.getElementById('mot-cache');
 const btnRejouer = document.getElementById('btn-rejouer');
+const elClavier = document.getElementById('clavier');
+
+function creerClavier() {
+    elClavier.innerHTML = '';
+    for (let i = 0; i < 26; i++) {
+        const lettre = String.fromCharCode(97 + i);
+        const btn = document.createElement('button');
+        btn.className = 'btn-lettre';
+        btn.textContent = lettre.toUpperCase();
+        btn.dataset.lettre = lettre;
+        btn.addEventListener('click', () => traiterLettre(lettre, btn));
+        elClavier.appendChild(btn);
+    }
+}
+
+function traiterLettre(lettre, btn) {
+    if (!enCours) return;
+
+    if (motCache.includes(lettre)) {
+        if (!lettresCorrectes.includes(lettre)) {
+            lettresCorrectes.push(lettre);
+            afficherMot();
+        } else {
+            afficherNotification();
+        }
+    } else {
+        if (!lettresIncorrectes.includes(lettre)) {
+            lettresIncorrectes.push(lettre);
+            afficherNbrErreurs();
+        } else {
+            afficherNotification();
+        }
+    }
+    btn.disabled = true;
+}
 
 function genererMot() {
     const index = Math.floor(Math.random() * mots.length);
@@ -205,6 +240,7 @@ function afficherNotification() {
 btnRejouer.addEventListener('click', () => {
     elPopup.style.display = 'none';
     initialiserJeu();
+    creerClavier();
 });
 
 window.addEventListener('keydown', (e) => {
@@ -243,3 +279,4 @@ function initialiserJeu() {
 }
 
 initialiserJeu();
+creerClavier();
