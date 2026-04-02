@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Jeu du Pendu</title>
+</head>
+<body>
+    <h1>Jeu du Pendu</h1>
+    <p>Trouvez le mot caché en proposant des lettres.</p>
+    
+    <div class="conteneur">
+        <div id="plateau"></div>
+        <p id="erreurs"></p>
+    </div>
+
+    <div class="conteneur-popup" id="popup">
+      <div class="popup">
+        <h2 id="dernier-message"></h2>
+        <h3 id="mot-cache"></h3>
+        <button id="btn-rejouer">Rejouer</button>
+      </div>
+    </div>
+    
+    <div id="notification">
+      <p>Vous avez déjà tapé cette lettre.</p>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
